@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+        "HTMLFiles/xhtml-math11-f.dtd">
+
+<!-- Created with the Wolfram Language : www.wolfram.com -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>
+  index
+ </title>
+ <link href="HTMLFiles/index.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body style="font-size: Floor[150. Inherited]%;">
+
+<p class="Title">
+ Balanced Worst Case distribution
+</p>
+
+
+
+<p class="Item">
+ <span class="ItemInline">Estimating exact future returns is impossible. </span>
+</p>
+
+
+
+<p class="Item">
+ <span class="ItemInline">Estimating a distribution, meaning estimating the parameters that define the distribution (e.g. &mu; and &sigma; in case of the beloved gauss curve) is hard.</span>
+</p>
+
+
+
+<p class="Item">
+ <span class="ItemInline">This article instead looks the balanced-worst-case distribution, which is the worst possible distribution for a given strategy with the only restriction being that </span>P(S &lt; x) = 0.5<span class="ItemInline">, meaning half of the points are left of x and half of the points are to the right of x.</span>
+</p>
+
+
+
+<p class="Subsection">
+ What is the Balanced Worst Case distribution
+</p>
+
+
+
+<p class="Text">
+ Imagine you have a strategy that is <span style='font-weight: bold;'>so robust</span> that even if everything goes wrong, you make money (or at least don&rsquo;t go bust). One way to test the robustness of a strategy is therefore to find what would be the rate of returns assuming that the strategy always has the worst possible results. <br /><br />Example:<br />- If your strategy is holding stock, then the worst case distribution is when the stock is always falling. Every single time.<br />- If your strategy is holding stocks + long OTM puts (e.g. insurance), the worst case is going to be when the puts expire worthless.<br /><br />Chances are that no strategy worth pursuing will pass this test, so let&rsquo;s relax our overly strict test a bit by adding an additional restriction on the worst-case distribution. The new restriction is that the distribution must be balanced, meaning that half of the returns will land on the left and half of the returns will land on the right. More formally P(S&lt;x)=0.5 and P(S&gt;x)=0.5. <br /><br />Example:<br />- If your strategy is holding stock and assuming the distribution is centered at 0, then the balanced worst case distribution is one where half of the returns are very negative (say -0.5) and half of the returns are at 0.
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/index_1.png" alt="index_1.png" width="494" height="26" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/index_2.gif" alt="index_2.gif" width="540" height="334" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ Example:<br />Assuming you hold stock and OTM puts with a strike of -0.10 and assuming the returns are centered around 0.&#8232;
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/index_3.png" alt="index_3.png" width="506" height="26" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/index_4.gif" alt="index_4.gif" width="540" height="334" style="vertical-align:middle" />
+</p>
+
+<p class="Subsection">
+ How realistic is the assumption that assets might be balanced?
+</p>
+
+
+
+<p class="Text">
+ Let&rsquo;s validate this assumption by looking at the 1-day returns of SPY and QQQ over periods of 100 days. 
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/index_5.gif" alt="index_5.gif" width="907" height="120" style="vertical-align:middle" />
+</p>
+
+<p class="Input">
+ <img src="HTMLFiles/index_6.png" alt="index_6.png" width="784" height="213" style="vertical-align:middle" />
+</p>
+
+<p class="Input">
+ <img src="HTMLFiles/index_7.png" alt="index_7.png" width="1305" height="58" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/index_8.gif" alt="index_8.gif" width="656" height="328" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ The graph above plots, the probability of the n-th 100-day period being balanced. Let&rsquo;s now look at the survival functions, meaning what is the probability that a 100-day period was balanced. We can see that the probability of a 100-day period being balanced&nbsp;&nbsp;has a probability of approximately 0.8.
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/index_9.png" alt="index_9.png" width="1236" height="58" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/index_10.gif" alt="Graphics:Probability of a 100-day period being balanced around 0%" width="540" height="354" style="vertical-align:middle" />
+</p>
+
+
+
+
+<div style="font-family:Helvetica; font-size:11px; width:100%; border:1px none #999999; border-top-style:solid; padding-top:2px; margin-top:20px;">
+ <a href="http://www.wolfram.com/language/" style="color:#000; text-decoration:none;">
+  <span style="color:#555555">Created with the Wolfram Language</span> 
+ </a>
+</div>
+</body>
+
+</html>

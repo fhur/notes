@@ -1,0 +1,65 @@
+<!--?xml version="1.0" encoding="UTF-8"?--><!DOCTYPE html><!-- Created with the Wolfram Language : www.wolfram.com --><html xmlns="http://www.w3.org/1999/xhtml"><head>
+ <title>Why The Geometric Mean</title>
+ <link href="HTMLFiles/why-the-geometric-mean.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/app.css"></head>
+
+<body style="font-size: Floor[150. Inherited]%;">
+
+<p class="Title">
+ Why the geometric average?
+</p>
+
+
+
+<p class="Text">
+ The geometric average is calculated as <span><span><img src="HTMLFiles/why-the-geometric-mean_1.png" alt="why-the-geometric-mean_1.png" width="275" height="34" style="vertical-align:middle"></span></span><br><br>The arithmetic average is calculated as <span><span><img src="HTMLFiles/why-the-geometric-mean_2.png" alt="why-the-geometric-mean_2.png" width="134" height="50" style="vertical-align:middle"></span></span><br><br><span class="SectionInline">Example</span><br>Consider a stock whose returns are +5%, +10%, -10%, -5%, +1%<br><br>Then the geometric average is&nbsp;&nbsp;<span class="InputInline"><span><img src="HTMLFiles/why-the-geometric-mean_3.png" alt="why-the-geometric-mean_3.png" width="586" height="59" style="vertical-align:middle"></span></span> which is roughly -0.05%<br><br>And the arithmetic average is <span><span><img src="HTMLFiles/why-the-geometric-mean_4.png" alt="why-the-geometric-mean_4.png" width="229" height="48" style="vertical-align:middle"></span></span>or 0.2%<br><br>So, the geometric average is negative while arithmetic average (from here on referred to as the mean) is positive. Assuming the distribution is going to maintain itself over n periods, should we invest in this asset? <br><br><span class="SectionInline">Running a small simulation</span><span class="SectionInline"><br></span>Let’s run a simulation with the following rules:<br>1. We start with a wealth of 1. <br>2. We invest all our returns on the stock.<br>3. On each turn we randomly pick a return <span><span><img src="HTMLFiles/why-the-geometric-mean_5.png" alt="why-the-geometric-mean_5.png" width="17" height="30" style="vertical-align:middle"></span></span> from +5%, +10%, -10%, -5%, +1% and increase our wealth accordingly.<br>4. We repeat many times.
+</p>
+
+
+
+<p class="Text">
+ The following graph shows the wealth of the player over time.
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/why-the-geometric-mean_6.png" alt="why-the-geometric-mean_6.png" width="1295" height="337" style="vertical-align:middle">
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/why-the-geometric-mean_7.gif" alt="Graphics:Geometric Mean: -0.325072%" width="540" height="336" style="vertical-align:middle">
+</p>
+
+<p class="Text">
+ Given enough time, a negative edge (negative geometric mean) will eventually lead to bankruptcy.<br><br>Let’s now run the same simulation but with a distribution that has a positive geometric mean.
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/why-the-geometric-mean_8.png" alt="why-the-geometric-mean_8.png" width="1282" height="244" style="vertical-align:middle">
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/why-the-geometric-mean_9.gif" alt="Graphics:Geometric Mean: 0.469552%" width="540" height="356" style="vertical-align:middle">
+</p>
+
+<p class="Text">
+ Now we see the reverse result. A small, but positive edge will eventually lead us to infinite wealth. Do take notice of the scales of both of these graphs.<br><br><span class="SectionInline">Including Probabilities<br></span>Another way of calculating the Geometric Mean is by looking at the probabilities. Going back to our example, given the following distribution: +5%, +10%, -10%, -5%, +1% we can encode this as follows:<br><br>P(S=+5%) = 1/5<br>P(S=+10%) = 1/5<br>P(S=-10%) = 1/5<br>P(S=-5%) = 1/5<br>P(S=+1%) = 1/5<br><br>Each row reads “the probability of the stock having a return of X equals 1/5”. <br><br>The geometric mean can be calculated as follows:<br><br><span><span><img src="HTMLFiles/why-the-geometric-mean_10.png" alt="why-the-geometric-mean_10.png" width="565" height="30" style="vertical-align:middle"></span></span> <br><br>Applying to our example we get <br><br><span><span><img src="HTMLFiles/why-the-geometric-mean_11.png" alt="why-the-geometric-mean_11.png" width="417" height="30" style="vertical-align:middle"></span></span>, which is roughly -0.05%<br><br><span class="SectionInline">Conclusions</span><span class="SectionInline"><br></span>I hope this small article convinced you of why the geometric mean is a better way of comparing distribution of assets. A few important characteristics to keep in mind:<br><br><span style="font-weight: bold;">How to calculate<br></span>There are two ways:<br><br> <span><span><img src="HTMLFiles/why-the-geometric-mean_12.png" alt="why-the-geometric-mean_12.png" width="390" height="30" style="vertical-align:middle"></span></span><br><br>or<br><br><span><span><img src="HTMLFiles/why-the-geometric-mean_13.png" alt="why-the-geometric-mean_13.png" width="271" height="33" style="vertical-align:middle"></span></span> <br><span style="font-weight: bold;">Bankruptcy Protection</span> If the distribution contains a -1, or in other words if there is a possibility of bankruptcy, the geometric mean will be 0. Just consider what would happen if <span><span><img src="HTMLFiles/why-the-geometric-mean_14.png" alt="why-the-geometric-mean_14.png" width="59" height="30" style="vertical-align:middle"></span></span> in the formula <span><span><img src="HTMLFiles/why-the-geometric-mean_15.png" alt="why-the-geometric-mean_15.png" width="321" height="33" style="vertical-align:middle"></span></span>.<br><br><span style="font-weight: bold;">Wild Swings</span><br>Even if the geometric mean is positive, there can be very long paths leading downwards.<br><br><span style="font-weight: bold;">The Law of Large Numbers</span><br>A small but positive edge will over time increase your wealth. The converse is also true: a small but negative edge over time will lead you to bankruptcy, which means that it is <span style="font-weight: bold;">very </span>important that your estimation of the geometric mean doesn’t suddenly turn negative. 
+</p>
+
+
+
+
+
+
+<div style="font-family:Helvetica; font-size:11px; width:100%; border:1px none #999999; border-top-style:solid; padding-top:2px; margin-top:20px;">
+ <a href="http://www.wolfram.com/language/" style="color:#000; text-decoration:none;">
+  <span style="color:#555555">Created with the Wolfram Language</span> 
+ </a>
+</div>
+
+
+
+</body></html>
