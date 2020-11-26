@@ -6,6 +6,7 @@ import {
   Article,
   href,
 } from "./model/Article";
+import { outDir } from "./model/constants";
 import { getPage } from "./components/pages/Page";
 import * as ReactDom from "react-dom/server";
 
@@ -38,7 +39,7 @@ function isValidArticleWithPaths({ index, htmlFiles, dir }: Article) {
 
 function writeArticleToSite(article: Article) {
   const { index, htmlFiles, dir } = article;
-  const articleDirectory = path.join("site", dir);
+  const articleDirectory = path.join(outDir, dir);
   fs.mkdirSync(articleDirectory, { recursive: true });
 
   const indexHtmlPath = absolutePath(article);
@@ -56,18 +57,18 @@ function main() {
     .map(findHtmlFiles)
     .filter(isValidArticleWithPaths);
 
-  if (!fs.existsSync("site/")) {
-    fs.mkdirSync("site/");
+  if (!fs.existsSync(outDir)) {
+    fs.mkdirSync(outDir);
   }
-  fs.rmSync("site/articles/", { recursive: true, force: true });
+  fs.rmSync(path.join(outDir, "/articles/"), { recursive: true, force: true });
 
   const indexOut = ReactDom.renderToStaticMarkup(
     getPage({ articles: articleWithPaths })
   );
 
-  fs.writeFileSync("site/index.html", indexOut);
+  fs.writeFileSync(path.join(outDir, "index.html"), indexOut);
 
-  fs.copyFileSync("src/static/app.css", "site/app.css");
+  fs.copyFileSync("src/static/app.css", path.join(outDir, "app.css"));
 
   articleWithPaths.forEach(writeArticleToSite);
 }

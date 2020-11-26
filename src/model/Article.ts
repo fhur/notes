@@ -1,5 +1,6 @@
 import path from "path";
-import { readHtml } from "./html";
+import { outDir } from "./constants";
+import { appendStylesheet, readHtml } from "./html";
 
 export type Article = {
   index: string;
@@ -24,7 +25,7 @@ export function href(article: Article) {
 }
 
 export function absolutePath(article: Article) {
-  return path.join("site", href(article));
+  return path.join(outDir, href(article));
 }
 
 export function applyHtmlRewrites(article: Article) {
@@ -34,12 +35,7 @@ export function applyHtmlRewrites(article: Article) {
   dom.window.document.title = getTitle(article);
 
   // import the app.css
-  const elLink = dom.window.document.createElement("link");
-  elLink.rel = "stylesheet";
-  elLink.type = "text/css";
-  elLink.href = "/app.css";
-
-  dom.window.document.head.appendChild(elLink);
+  appendStylesheet(dom, "/app.css");
 
   return dom;
 }
