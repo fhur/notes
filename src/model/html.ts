@@ -14,7 +14,7 @@ export function appendStylesheet(dom: JSDOM, href: string) {
   const elLink = dom.window.document.createElement("link");
   elLink.rel = "stylesheet";
   elLink.type = "text/css";
-  elLink.href = "/app.css";
+  elLink.href = "../../app.css";
 
   dom.window.document.head.appendChild(elLink);
 }
