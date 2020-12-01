@@ -19,6 +19,13 @@ body {
   margin-left: 0px;
   font-weight: normal;
   padding: 0;
+  line-height: 1.6;
+  font-size: 20px;
+  letter-spacing: -0.063px;
+  text-rendering: optimizelegibility;
+  word-break: break-word;
+  -webkit-font-smoothing: antialiased;
+  color: #292929;
 }
 
 .SectionInline {
@@ -33,6 +40,10 @@ body {
 .Item {
   font-family: "Open Sans", sans-serif;
   margin-left: 66px;
+}
+
+.Item::marker {
+  border-radius: 100%;
 }
 
 .Text {

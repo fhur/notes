@@ -10,5 +10,6 @@
     "watch": [
         "src/",
         "articles/"
-    ]
+    ],
+    "ext": "js,json,html,css,ts,tsx"
 }
