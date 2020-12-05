@@ -23,6 +23,7 @@
     "nodemon": "^2.0.6"
   },
   "scripts": {
-    "start": "nodemon --exec 'tsc && node build/index.js'"
+    "start": "nodemon --exec 'tsc && node build/index.js'",
+    "serve": "yarn run http-server docs/"
   }
 }
