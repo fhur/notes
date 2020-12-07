@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     47073,        992]
-NotebookOptionsPosition[     45831,        963]
-NotebookOutlinePosition[     46253,        980]
-CellTagsIndexPosition[     46210,        977]
+NotebookDataLength[     47067,        991]
+NotebookOptionsPosition[     45825,        962]
+NotebookOutlinePosition[     46247,        979]
+CellTagsIndexPosition[     46204,        976]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -849,8 +849,7 @@ calculated as follows:\n\n",
       RowBox[{"1", "/", "5"}]]}], " ", "-", "1"}], TraditionalForm]],
   ExpressionUUID->"d986d929-bc19-47a8-9964-890d8e2b460f"],
  ", which is roughly -0.05%\n\n",
- StyleBox["Conclusions", "Section"],
- StyleBox["\n", "Section"],
+ StyleBox["Conclusions\n", "Section"],
  "I hope this small article convinced you of why the geometric mean is a \
 better way of comparing distribution of assets. A few important \
 characteristics to keep in mind:\n\n",
@@ -903,12 +902,12 @@ characteristics to keep in mind:\n\n",
        RowBox[{"1", "+", 
         SubscriptBox["r", "n"]}], ")"}]}], "n"], "-", "1"}], 
    TraditionalForm]],ExpressionUUID->"52ecbcc9-c077-48ab-af3f-86315eab391e"],
- "\[LineSeparator]\n",
- StyleBox["Bankruptcy Protection",
+ "\n\n\n",
+ StyleBox["Bankruptcy Protection\n",
   FontWeight->"Bold"],
- "\[LineSeparator]If the distribution contains a -1, or in other words if \
-there is a possibility of bankruptcy, the geometric mean will be 0. Just \
-consider what would happen if ",
+ "If the distribution contains a -1, or in other words if there is a \
+possibility of bankruptcy, the geometric mean will be 0. Just consider what \
+would happen if ",
  Cell[BoxData[
   FormBox[
    RowBox[{
@@ -956,8 +955,8 @@ doesn\[CloseCurlyQuote]t suddenly turn negative.\[LineSeparator]"
   3.8146041400541897`*^9}, {3.814604183556994*^9, 3.814604361904533*^9}, {
   3.814604551515759*^9, 3.814604565259365*^9}, {3.814604631378304*^9, 
   3.814604784748918*^9}, {3.814604816924944*^9, 3.814605145421103*^9}, {
-  3.81460522782689*^9, 
-  3.814605369863228*^9}},ExpressionUUID->"be3bae97-4a56-41b0-8675-\
+  3.81460522782689*^9, 3.814605369863228*^9}, {3.816244296160685*^9, 
+  3.816244311556912*^9}},ExpressionUUID->"be3bae97-4a56-41b0-8675-\
 3e8492b60859"]
 }, Open  ]]
 },
@@ -980,7 +979,7 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 222, 4, 145, "Title",ExpressionUUID->"323a81e8-4e08-4c16-b4e0-27ec6eba5a18"],
+Cell[580, 22, 222, 4, 146, "Title",ExpressionUUID->"323a81e8-4e08-4c16-b4e0-27ec6eba5a18"],
 Cell[805, 28, 3666, 93, 787, "Text",ExpressionUUID->"7396a103-95dd-49a4-9252-f346fa2bc7d5"],
 Cell[4474, 123, 306, 6, 53, "Text",ExpressionUUID->"303d35ec-2aa1-4206-9ff7-ebd170b700a1"],
 Cell[CellGroupData[{
@@ -990,9 +989,9 @@ Cell[6988, 189, 15350, 268, 362, "Output",ExpressionUUID->"e0de7c0c-6251-46ff-97
 Cell[22353, 460, 457, 10, 122, "Text",ExpressionUUID->"a982a2ed-4627-4423-b1fb-a91d32063f89"],
 Cell[CellGroupData[{
 Cell[22835, 474, 1676, 45, 295, "Input",ExpressionUUID->"448678a7-3c51-4d65-a746-6d5a3039b15d"],
-Cell[24514, 521, 15386, 268, 399, "Output",ExpressionUUID->"a20a9d15-413b-48c4-972e-e6b0af60f5f1"]
+Cell[24514, 521, 15386, 268, 382, "Output",ExpressionUUID->"a20a9d15-413b-48c4-972e-e6b0af60f5f1"]
 }, Open  ]],
-Cell[39915, 792, 5900, 168, 1690, "Text",ExpressionUUID->"be3bae97-4a56-41b0-8675-3e8492b60859"]
+Cell[39915, 792, 5894, 167, 1724, "Text",ExpressionUUID->"be3bae97-4a56-41b0-8675-3e8492b60859"]
 }, Open  ]]
 }
 ]
