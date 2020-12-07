@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+        "HTMLFiles/xhtml-math11-f.dtd">
+
+<!-- Created with the Wolfram Language : www.wolfram.com -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>
+  universal-portfolio
+ </title>
+ <link href="HTMLFiles/universal-portfolio.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body style="font-size: Floor[150. Inherited]%;">
+
+<p class="Title">
+ Universal Portfolio
+</p>
+
+
+
+<p class="Text">
+ The idea of the universal portfolio was introduced by information theorist Thomas Cover (1938-2012) in a 1991 paper. Interestingly, this isn&rsquo;t the first time an information theorist brings a useful idea to the world of capital allocation, the first famous one being J. L. Kelly&rsquo;s in his 1956 publication of &ldquo;A New Interpretation of Information Rate&rdquo;. 
+</p>
+
+
+
+<p class="Subsection">
+ The Universal Portfolio Beats the Market
+</p>
+
+
+
+<p class="Text">
+ The universal portfolio has caught the attention of many because of the statements that Cover made in the paper. A universal portfolio will, with high probability, beat the market portfolio&nbsp;&nbsp;but more importantly beat a portfolio composed of the best performing stock. Stop and think about that for a minute: if you could look into the future, figure out what the best performing stock would be and make a portfolio composed only of that stock, a universal portfolio, <span style='font-weight: bold;'>without </span>knowing about the future will, given enough time, beat the best-performing-stock portfolio. <br /><br />Everyone talks about how difficult it is to &ldquo;beat the market&rdquo;, and yet here comes an academic and tells us that the market can <span style='font-style: italic;'>easily</span> be beaten. You don&rsquo;t even need to know much about the companies you&rsquo;re investing in, just run this capital allocation program and you&rsquo;re done. It seems to good to be true... besides, these academics and their fancy theories, if this was such a great idea, why didn&rsquo;t Cover start a Universal Portfolio hedge fund?&nbsp;&nbsp;Well it turns out that the ARA Group did recruit Cover for exactly this reason but the project was apparently stopped after Cover&rsquo;s death in 2012.<br /><br />If you are curious about the Universal Portfolio, this article is meant to give you a good understanding of the mathematics and the intuition behind Cover&rsquo;s ideas. I&rsquo;ve tried to explain every single concept as clearly as possible and assuming little background.&nbsp;&nbsp;
+</p>
+
+
+
+<p class="Subsection">
+ Representing Stock Returns
+</p>
+
+
+
+<p class="Text">
+ Before I tell you about the intuition behind the Universal Portfolio, let me introduce an easy way of modelling stock returns and portfolios using Vectors. The idea is that there is a stock market with m stocks. The investor&rsquo;s job is to allocate capital between the stocks. The way Cover modelled this is by representing the market using a sequence of vectors of returns <span><span><img src="HTMLFiles/universal-portfolio_1.png" alt="universal-portfolio_1.png" width="119" height="30" style="vertical-align:middle" /></span></span> where <span><span><img src="HTMLFiles/universal-portfolio_2.png" alt="universal-portfolio_2.png" width="183" height="30" style="vertical-align:middle" /></span></span> represents the returns of a single day.<br /><br /><span style='font-weight: bold;'>Example</span><br />The following describe the returns of a market&nbsp;&nbsp;composed of two stocks. So on the first day, stock one had a return of 1, meaning it didn&rsquo;t change, while stock 2 had a return of 1.1, meaning a 10% increase. On the second day stock one increased by 5% while stock two increased by 20%, etc.<br /><br /><span><span><img src="HTMLFiles/universal-portfolio_3.gif" alt="universal-portfolio_3.gif" width="132" height="103" style="vertical-align:middle" /></span></span>
+</p>
+
+
+
+<p class="Subsection">
+ Representing Allocations
+</p>
+
+
+
+<p class="Text">
+ We know that <span><span><img src="HTMLFiles/universal-portfolio_4.png" alt="universal-portfolio_4.png" width="14" height="30" style="vertical-align:middle" /></span></span> represents the returns of the market on a given day, let&rsquo;s talk about portfolios now. A portfolio is essentially a distribution of capital among options, so we can use a vector&nbsp;&nbsp;<span><span><img src="HTMLFiles/universal-portfolio_5.png" alt="universal-portfolio_5.png" width="144" height="30" style="vertical-align:middle" /></span></span> where <span><span><img src="HTMLFiles/universal-portfolio_6.png" alt="universal-portfolio_6.png" width="54" height="30" style="vertical-align:middle" /></span></span> and <span><span><img src="HTMLFiles/universal-portfolio_7.png" alt="universal-portfolio_7.png" width="101" height="70" style="vertical-align:middle" /></span></span>. Such a vector <span><span><img src="HTMLFiles/universal-portfolio_8.png" alt="universal-portfolio_8.png" width="18" height="30" style="vertical-align:middle" /></span></span> is called the portfolio vector and it describes the percentage to allocate to each stock.<br /><br />Example:<br /><br /><span><span><img src="HTMLFiles/universal-portfolio_9.gif" alt="universal-portfolio_9.gif" width="125" height="103" style="vertical-align:middle" /></span></span><br /><br /><span><span><img src="HTMLFiles/universal-portfolio_10.png" alt="universal-portfolio_10.png" width="22" height="30" style="vertical-align:middle" /></span></span> is saying that we are allocating 50% of the portfolio to the first stock and 50% to the second stock. <span><span><img src="HTMLFiles/universal-portfolio_11.png" alt="universal-portfolio_11.png" width="22" height="30" style="vertical-align:middle" /></span></span> is saying 60% on the first and 40% on the second, etc. 
+</p>
+
+
+
+<p class="Subsection">
+ Why use vectors?
+</p>
+
+
+
+<p class="Text">
+ The reason we use vectors to represent stock returns and portfolios is that the product between two vectors produces the return of investing with a portfolio. Example:<br /><br /><span><span><img src="HTMLFiles/universal-portfolio_12.gif" alt="universal-portfolio_12.gif" width="302" height="103" style="vertical-align:middle" /></span></span><br /><br />And the net return, is just the following product:<br /><br /><span><span><img src="HTMLFiles/universal-portfolio_13.png" alt="universal-portfolio_13.png" width="104" height="108" style="vertical-align:middle" /></span></span><br /><br />Which in our example is 1.05*1.11*0.87 = 1.01399<br />
+</p>
+
+
+
+<p class="Subsection">
+ Problem Statement
+</p>
+
+
+
+<p class="Text">
+ Let&nbsp;&nbsp;<span><span><img src="HTMLFiles/universal-portfolio_14.png" alt="universal-portfolio_14.png" width="163" height="70" style="vertical-align:middle" /></span></span> denote the wealth returned by investing with the same allocation percentages on every iteration and let&nbsp;&nbsp;<span><span><img src="HTMLFiles/universal-portfolio_15.png" alt="universal-portfolio_15.png" width="187" height="45" style="vertical-align:middle" /></span></span>meaning <span><span><img src="HTMLFiles/universal-portfolio_16.png" alt="universal-portfolio_16.png" width="46" height="30" style="vertical-align:middle" /></span></span> is the best returning constant portfolio.&nbsp;&nbsp;We can think of <span><span><img src="HTMLFiles/universal-portfolio_17.png" alt="universal-portfolio_17.png" width="46" height="30" style="vertical-align:middle" /></span></span> as the performance of an investor that knows the future, but must stick to a single allocation and never change his mind. Our goal will be to beat this investor.<br /><br />The Universal Portfolio, on the other hand, will not know about the future, but we can change our allocation at any moment in time. The idea is that even without knowing the future, the Universal Portfolio can have a performance greater than <span><span><img src="HTMLFiles/universal-portfolio_18.png" alt="universal-portfolio_18.png" width="46" height="30" style="vertical-align:middle" /></span></span>. <br /><br />The algorithm is actually quite simple: the i-th allocation <span><span><img src="HTMLFiles/universal-portfolio_19.png" alt="universal-portfolio_19.png" width="18" height="30" style="vertical-align:middle" /></span></span> is the performance weighted average over all portfolios.
+</p>
+
+
+
+<p class="Subtitle">
+ 
+</p>
+
+
+
+<p class="Text">
+ 
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/universal-portfolio_20.gif" alt="universal-portfolio_20.gif" width="916" height="1820" style="vertical-align:middle" />
+</p>
+
+<p class="Input">
+ <img src="HTMLFiles/universal-portfolio_21.gif" alt="universal-portfolio_21.gif" width="810" height="213" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/universal-portfolio_22.png" alt="universal-portfolio_22.png" width="413" height="39" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/universal-portfolio_23.png" alt="universal-portfolio_23.png" width="137" height="26" style="vertical-align:middle" />
+</p>
+
+<p class="Input">
+ <img src="HTMLFiles/universal-portfolio_24.png" alt="universal-portfolio_24.png" width="948" height="461" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/universal-portfolio_25.gif" alt="universal-portfolio_25.gif" width="743" height="349" style="vertical-align:middle" />
+</p>
+
+
+
+
+<div style="font-family:Helvetica; font-size:11px; width:100%; border:1px none #999999; border-top-style:solid; padding-top:2px; margin-top:20px;">
+ <a href="http://www.wolfram.com/language/" style="color:#000; text-decoration:none;">
+  <span style="color:#555555">Created with the Wolfram Language</span> 
+ </a>
+</div>
+</body>
+
+</html>
