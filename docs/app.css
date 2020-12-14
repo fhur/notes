@@ -15,6 +15,10 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+.Subsubsection {
+  font-family: "Open Sans", sans-serif;
+}
+
 .ItemInline {
   font-family: "Open Sans", sans-serif;
   margin-left: 0px;
@@ -41,6 +45,16 @@ body {
 .Item {
   font-family: "Open Sans", sans-serif;
   margin-left: 66px;
+  font-weight: normal;
+  padding: 0;
+  line-height: 1.6;
+  font-size: 20px;
+  letter-spacing: -0.063px;
+  text-rendering: optimizelegibility;
+  word-break: break-word;
+  -webkit-font-smoothing: antialiased;
+  color: #292929;
+  padding: 8px;
 }
 
 .Item::marker {

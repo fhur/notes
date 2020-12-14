@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+        "HTMLFiles/xhtml-math11-f.dtd">
+
+<!-- Created with the Wolfram Language : www.wolfram.com -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>
+  the-kelly-criterion
+ </title>
+ <link href="HTMLFiles/the-kelly-criterion.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body style="font-size: Floor[150. Inherited]%;">
+
+<p class="Title">
+ The Kelly Criterion
+</p>
+
+
+
+<p class="Subsection">
+ Introduction
+</p>
+
+
+
+<p class="Text">
+ So, you&rsquo;ve probably heard of the Kelly Criterion in the context of gambling or maybe also in the context of investing. When gamblers talk about the Kelly Criterion they are often referring to the idea of sizing your bets, which is the very intuitive idea that if you bet too much of a percentage of your total wealth, you will eventually go bust. The typical example here is that of the confident entrepreneur who wants to sell his house to fund his business, because he knows he has a sure thing.&nbsp;&nbsp;His wife, who doesn&rsquo;t know a single thing about Kelly, knows that selling her house is a risk that she isn&rsquo;t confident taking: &ldquo;You&rsquo;re betting too much on this idea&rdquo; - she might tell her husband. <br /><br />But Kelly is not just about sizing your bets, its also a way of distributing bets among favorable options. You might have heard your grandmother say &ldquo;Don&rsquo;t put all your eggs in one basket&rdquo;. Phoenician traders, importing goods from one port to another were known to split their cargo between ships so that if one of the ships sunk, they wouldn&rsquo;t loose all their investments.&nbsp;&nbsp;<br /><br />So you could say that the Kelly Criterion is a combination of both ideas, of smart bet-sizing and of diversification. 
+</p>
+
+
+
+<p class="Subsection">
+ An introduction: betting on a favorable coin toss.
+</p>
+
+
+
+<p class="Text">
+ Let&rsquo;s start our exploration of the Kelly Criterion by looking at the simplest possible gambling scenario: betting on a coin toss. Imagine you&rsquo;ve found a casino where the manager has (accidentally) opened a coin-toss game that is biased in your favor. You know there is a bias but you don&rsquo;t know how big the bias is. What strategy maximizes the wealth we can make from this game?<br /><br />Let&rsquo;s assume that the coin has a probability of <span><em>p</em></span> or coming up heads and <span><em>1</em><em>-</em><em>p</em></span> of coming up tails. If we bet a dollar and win, we can leave with 2 dollars. If we lose, we lose the dollar. Finally, let <span style='font-style: italic;'>f </span>denote the fraction of the gambler&rsquo;s wealth that will be bet at each point, where <span><em>f</em><em>=</em><em>0</em></span> means don&rsquo;t bet anything and <span><em>f</em><em>=</em><em>1</em></span> means <span style='font-style: italic;'>all-in </span>and let <span><span><img src="HTMLFiles/the-kelly-criterion_1.png" alt="the-kelly-criterion_1.png" width="20" height="30" style="vertical-align:middle" /></span></span> denote the wealth of the gambler after the n-th toss, where <span><span><img src="HTMLFiles/the-kelly-criterion_2.png" alt="the-kelly-criterion_2.png" width="53" height="30" style="vertical-align:middle" /></span></span>, meaning you start with one dollar (tip: S stands for $).<br /><br /><span><span><img src="HTMLFiles/the-kelly-criterion_3.gif" alt="the-kelly-criterion_3.gif" width="370" height="175" style="vertical-align:middle" /></span></span><br /><br />Our goal is going to be to come up with a strategy that will maximize our long term wealth.
+</p>
+
+
+
+<p class="Subsubsection">
+ Coming up with a formula for <span><span><img src="HTMLFiles/the-kelly-criterion_4.png" alt="the-kelly-criterion_4.png" width="27" height="37" style="vertical-align:middle" /></span></span>
+</p>
+
+
+
+<p class="Text">
+ The first thing we need to do when confronted with a problem like this is to figure out a formula for <span><span><img src="HTMLFiles/the-kelly-criterion_5.png" alt="the-kelly-criterion_5.png" width="20" height="30" style="vertical-align:middle" /></span></span>. Note that <span><span><img src="HTMLFiles/the-kelly-criterion_6.png" alt="the-kelly-criterion_6.png" width="33" height="30" style="vertical-align:middle" /></span></span> is the amount that will be bet while <span><span><img src="HTMLFiles/the-kelly-criterion_7.png" alt="the-kelly-criterion_7.png" width="74" height="30" style="vertical-align:middle" /></span></span> is the amount that will not be bet.<br /><br /><span><span><img src="HTMLFiles/the-kelly-criterion_8.png" alt="the-kelly-criterion_8.png" width="434" height="57" style="vertical-align:middle" /></span></span><br /><br />Which we can re-write as<br /><br /><span><span><img src="HTMLFiles/the-kelly-criterion_9.png" alt="the-kelly-criterion_9.png" width="352" height="57" style="vertical-align:middle" /></span></span><br /><br />Now, if we let W be the number of wins and L the number of loses,&nbsp;&nbsp;we can simplify as follows:<br /><br /><span><span><img src="HTMLFiles/the-kelly-criterion_10.png" alt="the-kelly-criterion_10.png" width="176" height="30" style="vertical-align:middle" /></span></span><br /><br />Note: if you&rsquo;re not sure why, just realize that your capital is either growing by (1+f) when you win or decreasing by (1-f) when you lose, now consider what happens if you win 2 times or lose 2 times, etc.<br /><br />Now, notice that as <span style='font-style: italic;'>n</span> grows, the following becomes a good approximation <br /><br /><span><span><img src="HTMLFiles/the-kelly-criterion_11.gif" alt="the-kelly-criterion_11.gif" width="83" height="116" style="vertical-align:middle" /></span></span><br /><br />We can then replace W and L with our probabilities from the <span><span><img src="HTMLFiles/the-kelly-criterion_12.png" alt="the-kelly-criterion_12.png" width="20" height="30" style="vertical-align:middle" /></span></span> formula, which gives us our first achievement, a formula for <span><span><img src="HTMLFiles/the-kelly-criterion_13.png" alt="the-kelly-criterion_13.png" width="20" height="30" style="vertical-align:middle" /></span></span>, which is valid for large n.<br /><br /><span><span><img src="HTMLFiles/the-kelly-criterion_14.png" alt="the-kelly-criterion_14.png" width="220" height="30" style="vertical-align:middle" /></span></span>
+</p>
+
+
+
+<p class="Subsubsection">
+ Applying the Kelly Criterion for the first time
+</p>
+
+
+
+<p class="Text">
+ So we&rsquo;ve found a closed formula that describes the gamblers wealth over time. We now want to, in some sense play around with <span style='font-style: italic;'>f, </span>which is really the only variable we can control and in some sense maximize <span><span><img src="HTMLFiles/the-kelly-criterion_15.png" alt="the-kelly-criterion_15.png" width="20" height="30" style="vertical-align:middle" /></span></span>. <br /><br />From an intuitive perspective, we know that if <span style='font-style: italic;'>f&nbsp;&nbsp;</span>is higher, we will win more over time (we assume that the bet is favorable, meaning <span><em>p</em><em> </em><em>&gt;</em><em> </em>0.5</span>), but we also know that if <span style='font-style: italic;'>f</span> is too high, we might go bust. Applying the Kelly Criterion will give us the right <span style='font-style: italic;'>f</span> so that we grow as fast as possible, while completely avoiding the risk of going bust. <br /><br />Let&rsquo;s introduce a number G called the rate of exponential growth, which we define as follows:<br /><br /><span><span><img src="HTMLFiles/the-kelly-criterion_16.png" alt="the-kelly-criterion_16.png" width="186" height="53" style="vertical-align:middle" /></span></span><br /><br />Where the base of the logarithm is 2. To better understand <span style='font-style: italic;'>G</span>, let&rsquo;s consider the case when the bets where totally guaranteed, meaning <span><em>p</em><em>=</em><em>1</em></span>. Then at each step, the wealth would double because you would bet everything you have. Then <span><span><img src="HTMLFiles/the-kelly-criterion_17.png" alt="the-kelly-criterion_17.png" width="62" height="30" style="vertical-align:middle" /></span></span>, which plugging into the formula for G yields a value of G=1.<br /><br /><span><span><img src="HTMLFiles/the-kelly-criterion_18.gif" alt="the-kelly-criterion_18.gif" width="202" height="153" style="vertical-align:middle" /></span></span><br /><br />So when G is 1, our capital double on every step. Let&rsquo;s now try to find the general formula for G, using <span><span><img src="HTMLFiles/the-kelly-criterion_19.png" alt="the-kelly-criterion_19.png" width="20" height="30" style="vertical-align:middle" /></span></span><br /><br /><span><span><img src="HTMLFiles/the-kelly-criterion_20.gif" alt="the-kelly-criterion_20.gif" width="405" height="322" style="vertical-align:middle" /></span></span><br /><br />Our goal, and the Kelly Criterion is going to be to <span style='font-weight: bold;'>maximize G</span>, which in this context just means to find the value of <span style='font-style: italic;'>f</span> that maximizes G. Let&rsquo;s plot G, as a function of f and p:
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/the-kelly-criterion_21.png" alt="the-kelly-criterion_21.png" width="969" height="616" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/the-kelly-criterion_22.gif" alt="the-kelly-criterion_22.gif" width="993" height="563" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ Notice that when p is 0.4 G is 0. What this basically means is that you should never bet if the odds are against you. It might be hard to see, but when p is 0.5, Kelly is also telling us not to bet. As p becomes positive, we notice that a maximum does begin to emerge, when p is 0.9, Kelly is telling us to bet slightly more than half of our capital.<br /><br />I won&rsquo;t go too deep into the math, but it can be shown that G achieves its maximum when <span><span>f=1-2p</span></span> 
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/the-kelly-criterion_23.png" alt="the-kelly-criterion_23.png" width="541" height="275" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/the-kelly-criterion_24.gif" alt="Graphics:G as a function of p" width="864" height="565" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ Let&rsquo;s end this chapter by showing you the results of simulating many Kelly gamblers with different values of <span style='font-style: italic;'>f</span> and noticing how their&nbsp;&nbsp;wealth changes over time. 
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/the-kelly-criterion_25.png" alt="the-kelly-criterion_25.png" width="1014" height="1050" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/the-kelly-criterion_26.gif" alt="the-kelly-criterion_26.gif" width="1284" height="367" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ On the left you see the wealth per step and to make it easier to understand the trends, the right shows the same plot on a logarithmic scale. What you will see is that the optimal bet size always ends up with the highest wealth over time and any bettor who bets more than Kelly ends up bust.
+</p>
+
+
+
+<p class="Subsection">
+ Conclusions
+</p>
+
+
+
+<p class="Text">
+ I hope this chapters gives you a first taste of what the Kelly Criterion is all about. We will be going deeper into the Kelly Criterion in future chapters, and we will try to apply the Kelly Criterion to situations more complicated than a coin toss. But for now let&rsquo;s review the main points:
+</p>
+
+
+
+<p class="Item">
+ The Kelly Criterion is a technique to maximize long term wealth, when presented with an opportunity that has favorable odds.
+</p>
+
+
+
+<p class="Item">
+ The Kelly Criterion can be used to determine the maximum size of a bet.
+</p>
+
+
+
+<p class="Item">
+ Betting more than Kelly will lead you to bankruptcy. 
+</p>
+
+
+
+<p class="Item">
+ Applying the Kelly Criterion means maximizing <span><span><img src="HTMLFiles/the-kelly-criterion_27.png" alt="the-kelly-criterion_27.png" width="186" height="53" style="vertical-align:middle" /></span></span>
+</p>
+
+
+
+
+
+
+<div style="font-family:Helvetica; font-size:11px; width:100%; border:1px none #999999; border-top-style:solid; padding-top:2px; margin-top:20px;">
+ <a href="http://www.wolfram.com/language/" style="color:#000; text-decoration:none;">
+  <span style="color:#555555">Created with the Wolfram Language</span> 
+ </a>
+</div>
+</body>
+
+</html>

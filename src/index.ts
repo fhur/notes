@@ -1,44 +1,66 @@
+import assert from "assert";
 import fs from "fs-extra";
 import path from "path";
-import {
-  absolutePath,
-  applyHtmlRewrites,
-  Article,
-  href,
-} from "./model/Article";
-import { outDir } from "./model/constants";
-import { getPage } from "./components/pages/Page";
 import * as ReactDom from "react-dom/server";
+import { getPage } from "./components/pages/Page";
+import { absolutePath, applyHtmlRewrites, Article } from "./model/Article";
+import { outDir } from "./model/constants";
+
+function parseArticleConfig(articlePath: string) {
+  const configPath = path.join("./", articlePath, "config.json");
+
+  if (fs.existsSync(configPath)) {
+    console.log(articlePath, "✅ loading config.json");
+    const config = JSON.parse(fs.readFileSync(configPath).toString());
+
+    assert(config.title);
+    assert(config.createdAt);
+
+    return config;
+  }
+
+  console.warn(articlePath, "🚨 No config found for " + articlePath);
+  return;
+}
 
 /**
  *
  * @param {String} articlePath
  */
 function findHtmlFiles(articlePath: string): Article {
+  console.log(">>-----------------------------------------");
+  console.log(articlePath, "Loading Article");
+
   const files = fs
     .readdirSync(articlePath)
     .map((file) => path.join(articlePath, file));
-  const index = files.find((file) => file.endsWith(".htm")) || "";
+  const pathToIndexHtml = files.find((file) => file.endsWith(".htm")) || "";
   const htmlFiles = path.join(articlePath, "HTMLFiles/");
 
-  if (!index) {
-    console.error(`No .htm file found for ${articlePath}, will ignore.`);
+  if (!pathToIndexHtml) {
+    console.error(articlePath, `🚨 No .htm file found for, will ignore.`);
+  } else {
+    console.log(articlePath, "✅ found .htm file");
   }
 
   return {
     dir: articlePath,
-    index,
+    pathToIndexHtml: pathToIndexHtml,
     htmlFiles,
-    name: articlePath,
+    config: parseArticleConfig(articlePath),
   };
 }
 
-function isValidArticleWithPaths({ index, htmlFiles, dir }: Article) {
+function isValidArticleWithPaths({
+  pathToIndexHtml: index,
+  htmlFiles,
+  dir,
+}: Article) {
   return index && fs.existsSync(index);
 }
 
 function writeArticleToSite(article: Article) {
-  const { index, htmlFiles, dir } = article;
+  const { htmlFiles, dir } = article;
   const articleDirectory = path.join(outDir, dir);
   fs.mkdirSync(articleDirectory, { recursive: true });
 

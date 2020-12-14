@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Article, getTitle, href } from "../../model/Article";
+import { Article, getTitle, href, getCreatedAt } from "../../model/Article";
+import { formatDate } from "../../model/dates";
 
 type Props = {
   articles: Article[];
@@ -12,7 +13,9 @@ function Articles(props: { articles: Article[] }) {
         {props.articles.map((article) => {
           return (
             <li key={href(article)}>
-              <a href={href(article)}>{getTitle(article)}</a>
+              <a href={href(article)}>
+                {getTitle(article)} ({formatDate(getCreatedAt(article))})
+              </a>
             </li>
           );
         })}
