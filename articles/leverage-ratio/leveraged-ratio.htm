@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+        "HTMLFiles/xhtml-math11-f.dtd">
+
+<!-- Created with the Wolfram Language : www.wolfram.com -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>
+  leveraged-ratio
+ </title>
+ <link href="HTMLFiles/leveraged-ratio.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body style="font-size: Floor[200. Inherited]%;">
+
+<p class="Title">
+ Leverage Ratios
+</p>
+
+
+
+<p class="Subsection">
+ Why do we need leverage ratios?
+</p>
+
+
+
+<p class="Text">
+ If you purchase $100.000 of a stock trading at $100.00 and the stock rises to $120.00, you&rsquo;ve made a return of 20%.<br />Another way of arriving at this result is by using the delta as follows:<br /><br />1. Calculate how many units you have: $100.000/$100 = 1000<br />2. Calculate the net delta:&nbsp;&nbsp;1000 x 1 (stocks have a delta of 1)<br />3. Calculate the increase of the position due to deltas:&nbsp;&nbsp;(120-100)*1000 = $20.000<br />4. Calculate the returns: $120.000/$100.000 - 1 = 20%<br /><br />Let&rsquo;s now do the same for a <span style='font-weight: bold;'>deep in the money call</span>, with a delta of 0.90 with a price of $16<br /><br />1. Calculate how many units you have: $100.000/$16 = 6250<br />2. Calculate the net delta: 6250*0.9 = 5625<br />3. Calculate the increase of the position due to deltas = (120-100)*5625 = $112.500<br />4. Calculate the returns: ($100.000 + $112.500)/$100.000 = 112.5%
+</p>
+
+
+
+<p class="Subsection">
+ <span class="SubsectionInline">How to calculate leverage ratios</span>
+</p>
+
+
+
+<p class="Text">
+ As you might have noticed, two positions with the same cash allocation resulted in very different returns.<br />The leverage ratio helps us understand this difference and is calculated in two different ways:<br /><br />net delta of call or put position / net delta of stock position - 1<br /><br />or<br /><br /><span><span><img src="HTMLFiles/leveraged-ratio_1.png" alt="leveraged-ratio_1.png" width="768" height="77" style="vertical-align:middle" /></span></span><br /><br />Which for this example yields:<br /><br />1. net delta of call position = 5625<br />2. net delta of stock position = 1000<br />3. Result = 4.625
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/leveraged-ratio_2.png" alt="leveraged-ratio_2.png" width="4" height="75" style="vertical-align:middle" />
+</p>
+
+
+
+
+<div style="font-family:Helvetica; font-size:11px; width:100%; border:1px none #999999; border-top-style:solid; padding-top:2px; margin-top:20px;">
+ <a href="http://www.wolfram.com/language/" style="color:#000; text-decoration:none;">
+  <span style="color:#555555">Created with the Wolfram Language</span> 
+ </a>
+</div>
+</body>
+
+</html>

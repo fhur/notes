@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+        "HTMLFiles/xhtml-math11-f.dtd">
+
+<!-- Created with the Wolfram Language : www.wolfram.com -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>
+  battle-plan
+ </title>
+ <link href="HTMLFiles/battle-plan.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<p class="Title">
+ Battle Plan
+</p>
+
+
+
+<p class="Text">
+ This document describes the actions we should take in case of a market crash. 
+</p>
+
+
+
+<p class="Subsection">
+ Identifying a Crash
+</p>
+
+
+
+<p class="Text">
+ The first thing to do is to determine if a crash is even happening. The heuristic we use here is to know how much the market has crashed in terms of standard deviations.<br /><br />Any drop below 2 standard deviations is no evidence of a crash. A drop of 3 standard deviations is called a 3-&sigma; crash, a drop of 4 standard deviations is called a 4-&sigma; crash, etc.
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/battle-plan_1.gif" alt="battle-plan_1.gif" width="333" height="186" style="vertical-align:middle" />
+</p>
+
+<p class="Input">
+ <img src="HTMLFiles/battle-plan_2.gif" alt="battle-plan_2.gif" width="1437" height="207" style="vertical-align:middle" />
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/battle-plan_3.gif" alt="Graphics:The daily distribution of QQQ approximately fits&nbsp;&nbsp;a LogNormal with &amp;mu; = 0.0013, &amp;sigma; = 0.011" width="576" height="391" style="vertical-align:middle" />
+</p>
+
+<p class="Text">
+ This gives us a very practical approximation for identifying crashes: since a 1% drop of QQQ is a 1-&sigma; move, then a 3% drop is a 3-&sigma; move.
+</p>
+
+
+
+<p class="Subsection">
+ How often should we expect n-&sigma; moves in the market
+</p>
+
+
+
+<p class="Text">
+ By looking at the empirical probabilities, we can get an idea of how often large moves occur in the market. Although there is no guarantee that the future will look like the past, its good to have an idea of these probabilities.
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/battle-plan_4.gif" alt="battle-plan_4.gif" width="995" height="312" style="vertical-align:middle" />
+</p>
+
+<table class='Output' frame='box' rules='all'>
+ <tr style='vertical-align: baseline;'>
+  <td style='text-align: center;'><span>n-&sigma;</span></td>
+  <td style='text-align: center;'><span>Empirically, how often does it happen? (in days)</span></td>
+  <td style='text-align: center;'><span>Or approximately...</span></td>
+ </tr>
+ <tr style='vertical-align: baseline;'>
+  <td style='text-align: center;'><span>2</span></td>
+  <td style='text-align: center;'><span>13.368</span></td>
+  <td style='text-align: center;'><span>once every two weeks</span></td>
+ </tr>
+ <tr style='vertical-align: baseline;'>
+  <td style='text-align: center;'><span>3</span></td>
+  <td style='text-align: center;'><span>32.5519</span></td>
+  <td style='text-align: center;'><span>once per month</span></td>
+ </tr>
+ <tr style='vertical-align: baseline;'>
+  <td style='text-align: center;'><span>4</span></td>
+  <td style='text-align: center;'><span>73.7206</span></td>
+  <td style='text-align: center;'><span>once every two months</span></td>
+ </tr>
+ <tr style='vertical-align: baseline;'>
+  <td style='text-align: center;'><span>5</span></td>
+  <td style='text-align: center;'><span>208.875</span></td>
+  <td style='text-align: center;'><span>once every half a year</span></td>
+ </tr>
+ <tr style='vertical-align: baseline;'>
+  <td style='text-align: center;'><span>6</span></td>
+  <td style='text-align: center;'><span>358.071</span></td>
+  <td style='text-align: center;'><span>once every year</span></td>
+ </tr>
+ <tr style='vertical-align: baseline;'>
+  <td style='text-align: center;'><span>7</span></td>
+  <td style='text-align: center;'><span>626.625</span></td>
+  <td style='text-align: center;'><span>once every 2 years</span></td>
+ </tr>
+</table>
+
+<p class="Text">
+ 
+</p>
+
+
+
+
+
+
+<div style="font-family:Helvetica; font-size:11px; width:100%; border:1px none #999999; border-top-style:solid; padding-top:2px; margin-top:20px;">
+ <a href="http://www.wolfram.com/language/" style="color:#000; text-decoration:none;">
+  <span style="color:#555555">Created with the Wolfram Language</span> 
+ </a>
+</div>
+</body>
+
+</html>

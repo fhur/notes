@@ -1,0 +1,841 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     35031,        833]
+NotebookOptionsPosition[     30664,        753]
+NotebookOutlinePosition[     31089,        770]
+CellTagsIndexPosition[     31046,        767]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+A simple introduction to option pricing ... without too much math\
+\>", "Title",
+ CellChangeTimes->{{3.834378967971735*^9, 
+  3.83437901379191*^9}},ExpressionUUID->"f240b266-d2a9-40a7-b749-\
+c5d9cdc8830c"],
+
+Cell["\<\
+Option pricing is a hard topic. It requires advanced mathematical training \
+which means that the topic is not very accessible. 
+
+This introduction is based on the 1979 paper Option Pricing: A simplified \
+approach. My goal with this article is to give you an intuition to how \
+options can be priced without too much math. If you find the topic \
+interesting, go read the paper.  \
+\>", "Text",
+ CellChangeTimes->{{3.834379022718812*^9, 
+  3.834379300174197*^9}},ExpressionUUID->"da95190f-a29a-402d-9e73-\
+9ae1035b06de"],
+
+Cell[CellGroupData[{
+
+Cell["Part 1: The easy case", "Subsection",
+ CellChangeTimes->{{3.8343792621666927`*^9, 3.834379265455048*^9}, {
+  3.834413670829274*^9, 
+  3.834413690821664*^9}},ExpressionUUID->"bf3c08dd-aeef-4f76-b6b1-\
+3572a1c04e4b"],
+
+Cell["\<\
+Let\[CloseCurlyQuote]s imagine the following simplistic scenario. There is \
+stock whose price is S = $50 and at the end of the day it can be either $25 \
+or $100 and there is a call with strike price K = $50. Finally, the interest \
+free rate is 25%.
+Our goal is going to be to find the price of that call with strike of K = $50 .
+
+What values can the stock take? Let\[CloseCurlyQuote]s represent this with a \
+diagram.\
+\>", "Text",
+ CellChangeTimes->{{3.8343310684082203`*^9, 3.834331286311665*^9}, {
+   3.834331316872422*^9, 3.8343313170975723`*^9}, 3.834378962759516*^9, {
+   3.834379313735818*^9, 3.8343793480167933`*^9}, {3.834379448319642*^9, 
+   3.8343795127125998`*^9}, {3.834379749516296*^9, 
+   3.834379843499354*^9}},ExpressionUUID->"5a54dd37-a1bf-480d-8c27-\
+60ff9b5f9caf"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TreePlot", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"\"\<S = $50\>\"", "\[Rule]", "\"\<$25\>\""}], ",", 
+     RowBox[{"\"\<S = $50\>\"", "\[Rule]", "\"\<$100\>\""}]}], 
+    "\[IndentingNewLine]", "}"}], ",", " ", "\[IndentingNewLine]", "Left", 
+   ",", " ", "\[IndentingNewLine]", 
+   RowBox[{"VertexLabels", "\[Rule]", "\"\<Name\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"ImageSize", "\[Rule]", "Small"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"PlotLabel", "\[Rule]", "\"\<S can go either up or down\>\""}]}], 
+  "\[IndentingNewLine]", "]"}]], "Input",
+ CellChangeTimes->{{3.834379354710246*^9, 3.83437943093557*^9}},
+ CellLabel->
+  "In[146]:=",ExpressionUUID->"111b33cb-e88d-465f-8fc0-2a1285a1a68a"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+    LineBox[{{{0., 0.4472135954999586}, {0.8944271909999156, 0.}}, {{0., 
+     0.4472135954999586}, {0.8944271909999163, 0.8944271909999157}}}]}, 
+   {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+    0.7]}], {DiskBox[{0., 0.4472135954999586}, 0.011386058141428934], 
+     InsetBox["\<\"S = $50\"\>", Offset[{0, 2}, {0., 0.45859965364138755}], 
+      ImageScaled[{0.5, 0}],
+      BaseStyle->"Graphics"]}, {
+     DiskBox[{0.8944271909999156, 0.}, 0.011386058141428934], 
+     InsetBox["\<\"$25\"\>", 
+      Offset[{0, -2}, {0.8944271909999156, -0.011386058141428934}], 
+      ImageScaled[{0.5, 1}],
+      BaseStyle->"Graphics"]}, {
+     DiskBox[{0.8944271909999163, 0.8944271909999157}, 0.011386058141428934], 
+     InsetBox["\<\"$100\"\>", 
+      Offset[{0, -2}, {0.8944271909999163, 0.8830411328584868}], ImageScaled[{0.5, 1}],
+      BaseStyle->"Graphics"]}}},
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->Small,
+  PlotLabel->FormBox[
+   "\"S can go either up or down\"", TraditionalForm]]], "Output",
+ CellChangeTimes->{3.834379432002883*^9},
+ CellLabel->
+  "Out[146]=",ExpressionUUID->"17c92055-a0e5-4a42-a95c-2b9c81e4be4e"]
+}, Open  ]],
+
+Cell["\<\
+Finally, what  values can the call take at expiration? Remember that at \
+expiration a call option is worth Max(S-K). Let C denote the price of the \
+call today.\[LineSeparator]\
+\>", "Text",
+ CellChangeTimes->{{3.8343310684082203`*^9, 3.834331286311665*^9}, {
+   3.834331316872422*^9, 3.8343313170975723`*^9}, 3.834378962759516*^9, {
+   3.834379313735818*^9, 3.834379352635891*^9}, {3.83437953951679*^9, 
+   3.834379566218397*^9}, {3.834379643075719*^9, 3.834379659906789*^9}, {
+   3.834379714414076*^9, 3.8343797350225077`*^9}, {3.834379848939197*^9, 
+   3.834379861874772*^9}},ExpressionUUID->"fb01bcc0-03cc-48a0-a442-\
+486b63c0f44e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TreePlot", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"\"\<C = ?\>\"", "\[Rule]", "\"\<$0\>\""}], ",", 
+     RowBox[{"\"\<C = ?\>\"", "\[Rule]", "\"\<$50\>\""}]}], 
+    "\[IndentingNewLine]", "}"}], ",", " ", "\[IndentingNewLine]", "Left", 
+   ",", " ", "\[IndentingNewLine]", 
+   RowBox[{"VertexLabels", "\[Rule]", "\"\<Name\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"ImageSize", "\[Rule]", "Small"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"PlotLabel", "\[Rule]", "\"\<C can go either up or down\>\""}]}], 
+  "\n", "]"}]], "Input",
+ CellChangeTimes->{{3.834379572257535*^9, 3.8343797039513483`*^9}},
+ CellLabel->
+  "In[148]:=",ExpressionUUID->"5605f222-d245-49f1-aea8-e2f02966377e"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+    LineBox[{{{0., 0.4472135954999586}, {0.8944271909999156, 0.}}, {{0., 
+     0.4472135954999586}, {0.8944271909999163, 0.8944271909999157}}}]}, 
+   {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+    0.7]}], {DiskBox[{0., 0.4472135954999586}, 0.011386058141428934], 
+     InsetBox["\<\"C = ?\"\>", Offset[{0, 2}, {0., 0.45859965364138755}], 
+      ImageScaled[{0.5, 0}],
+      BaseStyle->"Graphics"]}, {
+     DiskBox[{0.8944271909999156, 0.}, 0.011386058141428934], 
+     InsetBox["\<\"$0\"\>", 
+      Offset[{0, -2}, {0.8944271909999156, -0.011386058141428934}], 
+      ImageScaled[{0.5, 1}],
+      BaseStyle->"Graphics"]}, {
+     DiskBox[{0.8944271909999163, 0.8944271909999157}, 0.011386058141428934], 
+     InsetBox["\<\"$50\"\>", 
+      Offset[{0, -2}, {0.8944271909999163, 0.8830411328584868}], ImageScaled[{0.5, 1}],
+      BaseStyle->"Graphics"]}}},
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->Small,
+  PlotLabel->FormBox[
+   "\"C can go either up or down\"", TraditionalForm]]], "Output",
+ CellChangeTimes->{{3.834379686456235*^9, 3.834379706893757*^9}},
+ CellLabel->
+  "Out[148]=",ExpressionUUID->"fa78b202-d69c-4777-8028-de84eaa9f47c"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["The \[OpenCurlyDoubleQuote]trick\[CloseCurlyDoubleQuote]", "Subsection",
+ CellChangeTimes->{{3.834379949037739*^9, 
+  3.834379952271543*^9}},ExpressionUUID->"c8e66424-7910-4c57-b615-\
+dbb7d84a3e03"],
+
+Cell[TextData[{
+ "In order to find the value of C, we are going to create a position by \
+combining stocks and calls whose value will be the same whether the stock \
+goes up to $100 or down to $25.\n\nLet\[CloseCurlyQuote]s construct the \
+position:\n\n",
+ StyleBox["Write 3 calls at C each\nBuy 2 shares at $50 each \nBorrow $40 at \
+25% to be paid at the end of the period", "Item"],
+ "\n\nHow much cash will we hold in our pockets today with this position?\nBy \
+writing the 3 calls we generate an income of 3C, buying the 2 calls we need \
+to pay 2*$50 and finally by borrowing $40, we get an additional $40 (which we \
+will need to pay later). This gives us the following formula:\n\n3C - 2*$50 + \
+$40\n\nLet\[CloseCurlyQuote]s see how our portfolio\[CloseCurlyQuote]s value \
+will change if the stock goes up to $100:\nThe short calls will be worth $50 \
+each, so this means we will have to pay out $150.\nThe stock will move to \
+$100, meaning our stock position will be worth $200.\nWe will need to pay \
+back the $40 plus interest of 25%, totalling $50.\n\n-$150 + $200 - $50 = $0\n\
+\nAnd finally, let\[CloseCurlyQuote]s see how our \
+portfolio\[CloseCurlyQuote]s value will change if the stock goes down to $25:\
+\nThe short calls will be worth $0 each.\nThe stock will move to $25, meaning \
+our stock position will be worth $50.\nWe will need to pay back the $40 plus \
+interest of 25%, totalling $50.\n\[LineSeparator]$0 + $50 - $50 = $0\n\nLet\
+\[CloseCurlyQuote]s summarize this in a diagram:"
+}], "Text",
+ CellChangeTimes->{{3.8343310684082203`*^9, 3.834331286311665*^9}, {
+   3.834331316872422*^9, 3.8343313170975723`*^9}, 3.834378962759516*^9, {
+   3.834379313735818*^9, 3.834379352635891*^9}, {3.83437953951679*^9, 
+   3.834379571310666*^9}, {3.834379884518866*^9, 3.834379906300559*^9}, {
+   3.834379983003416*^9, 3.8343800245755033`*^9}, {3.834380094541979*^9, 
+   3.834380289987851*^9}, {3.8343803496520243`*^9, 3.834380495816684*^9}, {
+   3.834380619752204*^9, 3.834380861275661*^9}, {3.834380919685191*^9, 
+   3.834381020555788*^9}, {3.8343810513661337`*^9, 
+   3.8343811001924543`*^9}},ExpressionUUID->"f810edc6-2fef-4c49-bd84-\
+b2563f114027"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TreePlot", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+     "\"\<3C - 100 + 40\>\"", "\[Rule]", "\"\<-$150 + $200 - $50 = $0\>\""}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{
+     "\"\<3C - 100 + 40\>\"", "\[Rule]", "\"\<$0 + $50 - $50 = $0\>\""}]}], 
+    "\[IndentingNewLine]", "}"}], ",", " ", "\[IndentingNewLine]", "Left", 
+   ",", " ", "\[IndentingNewLine]", 
+   RowBox[{"VertexLabels", "\[Rule]", "\"\<Name\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"ImageSize", "\[Rule]", "Small"}]}], "\n", "]"}]], "Input",
+ CellChangeTimes->{{3.834380034591981*^9, 3.834380077596683*^9}, 
+   3.834380117191351*^9, {3.834381109676215*^9, 3.834381185319273*^9}, {
+   3.8343812352103977`*^9, 3.834381236482193*^9}},
+ CellLabel->
+  "In[159]:=",ExpressionUUID->"a3dcc22d-762e-4c92-89dc-0666a6a813ff"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+    LineBox[{{{0., 0.4472135954999586}, {0.8944271909999156, 0.}}, {{0., 
+     0.4472135954999586}, {0.8944271909999163, 0.8944271909999157}}}]}, 
+   {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+    0.7]}], {DiskBox[{0., 0.4472135954999586}, 0.011386058141428934], 
+     InsetBox["\<\"3C - 100 + 40\"\>", 
+      Offset[{0, 2}, {0., 0.45859965364138755}], ImageScaled[{0.5, 0}],
+      BaseStyle->"Graphics"]}, {
+     DiskBox[{0.8944271909999156, 0.}, 0.011386058141428934], 
+     InsetBox["\<\"-$150 + $200 - $50 = $0\"\>", 
+      Offset[{0, -2}, {0.8944271909999156, -0.011386058141428934}], 
+      ImageScaled[{0.5, 1}],
+      BaseStyle->"Graphics"]}, {
+     DiskBox[{0.8944271909999163, 0.8944271909999157}, 0.011386058141428934], 
+     InsetBox["\<\"$0 + $50 - $50 = $0\"\>", 
+      Offset[{0, -2}, {0.8944271909999163, 0.8830411328584868}], ImageScaled[{0.5, 1}],
+      BaseStyle->"Graphics"]}}},
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->Small]], "Output",
+ CellChangeTimes->{
+  3.834380025820415*^9, 3.83438007824681*^9, {3.834381122618031*^9, 
+   3.8343811799388933`*^9}, {3.8343812186625967`*^9, 3.8343812371376543`*^9}},
+ 
+ CellLabel->
+  "Out[159]=",ExpressionUUID->"484b5c21-6b9c-48ca-9ac2-5b26856a0268"]
+}, Open  ]],
+
+Cell[TextData[{
+ "\nThere\[CloseCurlyQuote]s one ",
+ StyleBox["very ",
+  FontWeight->"Bold"],
+ "important thing to notice about this diagram: The position is worth $0 \
+whether the stock goes up or down. So what is the value of 3C - 100 + 40  \
+then? Let\[CloseCurlyQuote]s consider a few cases:\n\nImagine that the value \
+of 3C - 100 + 40 was > 0. Then we have created a position that is worth ",
+ StyleBox["something ",
+  FontWeight->"Bold"],
+ "today, but ",
+ StyleBox["always",
+  FontWeight->"Bold"],
+ " goes to ",
+ StyleBox["zero",
+  FontWeight->"Bold"],
+ ". What could we do if we found such a situation in the markets? We could \
+make a riskless profit. The same is true about the reverse case, i.e. if 3C - \
+100 + 40 < 0.\n\nIf we assume that the market we\[CloseCurlyQuote]re trading \
+in is an \[OpenCurlyDoubleQuote]efficient market\[CloseCurlyDoubleQuote], \
+then these kind of risk-free profit opportunities will disappear quickly, \
+which means the only possibility is that our position is ",
+ StyleBox["also",
+  FontWeight->"Bold"],
+ " worth $0 today. This gives us then the following equation:\n\n3C - $100 + \
+$40 = 0\n\nWhich solving for C gives:\n\nC = $20"
+}], "Text",
+ CellChangeTimes->{{3.8343315611181*^9, 3.83433159489953*^9}, {
+  3.834381240514893*^9, 3.8343817729687853`*^9}, {3.834413369355847*^9, 
+  3.834413624522305*^9}},ExpressionUUID->"89939bca-7833-4ede-a1ab-\
+f7ad9288bded"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Summary", "Subsection",
+ CellChangeTimes->{{3.834381768756055*^9, 
+  3.8343817920319757`*^9}},ExpressionUUID->"2d4cca5d-dcf6-41c6-a297-\
+a3d5b0a7339c"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+A stock has a value of $50 today and can go to either $25 or $100.\
+\>", "Item",
+ CellChangeTimes->{{3.834381820581464*^9, 
+  3.834381851319137*^9}},ExpressionUUID->"34e60906-4aae-47f9-88c4-\
+c9314577a1a5"],
+
+Cell["\<\
+We want to find the value of a call with strike of $50 expiring tomorrow.\
+\>", "Item",
+ CellChangeTimes->{{3.834381820581464*^9, 3.834381876089224*^9}, {
+  3.834382021647148*^9, 
+  3.834382021936582*^9}},ExpressionUUID->"9923b48a-5ef2-47d0-a8a1-\
+f39e408f453b"],
+
+Cell["\<\
+We created a position that was worth $0 whether the stock went up or down.\
+\>", "Item",
+ CellChangeTimes->{{3.834381820581464*^9, 
+  3.8343819003915453`*^9}},ExpressionUUID->"809dd85a-f385-45ea-b5af-\
+453e8f0d9614"],
+
+Cell["\<\
+We argued that if the position was always worth $0 at expiration, it must \
+have been worth $0 today.\
+\>", "Item",
+ CellChangeTimes->{{3.834381820581464*^9, 3.834381909159474*^9}, {
+  3.8343820388874807`*^9, 3.8343820680727377`*^9}, {3.8344136593364553`*^9, 
+  3.834413659775985*^9}},ExpressionUUID->"9d40dbaf-7f78-4231-911e-\
+4560f8e0da37"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Part 2: Generalizing the easy case", "Subsection",
+ CellChangeTimes->{{3.834413664695513*^9, 3.834413666673293*^9}, {
+  3.834413707611969*^9, 
+  3.834413717112665*^9}},ExpressionUUID->"b7d247e3-ce0a-4420-b1b1-\
+f819ccbfd135"],
+
+Cell["\<\
+Let\[CloseCurlyQuote]s take the learnings from Part 1 and generalize a bit. \
+Let\[CloseCurlyQuote]s introduce some terminology:
+\
+\>", "Text",
+ CellChangeTimes->{{3.8344137590174503`*^9, 
+  3.834413815458063*^9}},ExpressionUUID->"b4ca1aa7-2d5e-4e87-b30a-\
+5c3d06f1b011"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["S", TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "1c1f03e5-72d3-4a44-9f84-9cc820a1f060"],
+ " is the price of the stock today."
+}], "Item",
+ CellChangeTimes->{{3.8344137590174503`*^9, 3.8344137889240437`*^9}, {
+   3.834413823098654*^9, 3.834413842059115*^9}, 3.834413891454072*^9, {
+   3.8344143250458*^9, 3.834414325266396*^9}, 
+   3.834414501491991*^9},ExpressionUUID->"71ce4e9f-a529-4693-a4a8-\
+94e8bb1d8311"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["uS", TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "6cb60796-9fd3-48d8-b1f0-efefc448a4ba"],
+ StyleBox[" ",
+  FontSlant->"Italic"],
+ "is the price of the stock at expiration when the stock rises. For example \
+if the stock rose by 5% then u would be (1+5%) i.e. ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"uS", " ", "=", " ", 
+    RowBox[{"S", 
+     RowBox[{"(", 
+      RowBox[{"1", "+", "0.05"}], ")"}]}]}], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "6869d689-ccb4-44b7-abc1-236b4fafd958"],
+ "."
+}], "Item",
+ CellChangeTimes->{{3.8344137590174503`*^9, 3.8344137889240437`*^9}, {
+   3.834413823098654*^9, 3.8344138894328814`*^9}, {3.834414327874861*^9, 
+   3.834414328131544*^9}, {3.8344144969478693`*^9, 3.834414585389544*^9}, 
+   3.8344146300718517`*^9},ExpressionUUID->"4651aea0-913d-47c7-9248-\
+02b65b2feef7"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["dS", TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "4f9435f7-ad04-4052-a93a-5bff2eae92aa"],
+ " the price of the stock at expiration when the stock falls."
+}], "Item",
+ CellChangeTimes->{{3.8344137590174503`*^9, 3.8344137889240437`*^9}, {
+  3.834413823098654*^9, 3.834413886499752*^9}, {3.834413923472864*^9, 
+  3.8344139234733963`*^9}, {3.834414493351872*^9, 
+  3.834414514824444*^9}},ExpressionUUID->"2a785865-1a8e-4ab0-9eae-\
+ad7233f57705"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["q", TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "46baa1b4-fb50-47da-903d-7b7d2bd87781"],
+ " the probability of the stock rising."
+}], "Item",
+ CellChangeTimes->{{3.8344137590174503`*^9, 3.8344137889240437`*^9}, {
+   3.834413823098654*^9, 3.834413886499752*^9}, {3.834413924288219*^9, 
+   3.834413934603155*^9}, {3.834414302125176*^9, 3.834414302125638*^9}, 
+   3.834414490023693*^9},ExpressionUUID->"2f98d675-0cb9-4812-bcad-\
+9510c9c970ff"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["r", TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "4f79a6e0-5843-412a-bd6a-499b38faf98a"],
+ StyleBox[" ",
+  FontWeight->"Bold",
+  FontSlant->"Italic"],
+ "the risk free rate plus one. For example if the interest free rate is 2%, \
+then r = (1+0.02)."
+}], "Item",
+ CellChangeTimes->{{3.8344137590174503`*^9, 3.8344137889240437`*^9}, {
+   3.834413823098654*^9, 3.834413886499752*^9}, {3.834413924288219*^9, 
+   3.834413934603155*^9}, 3.8344143052346983`*^9, {3.834414350783115*^9, 
+   3.834414389902377*^9}, {3.834414446821899*^9, 3.8344144468224*^9}, 
+   3.8344144839784613`*^9, {3.834416253453417*^9, 
+   3.8344162755051193`*^9}},ExpressionUUID->"2d54558d-6b29-43f6-85c8-\
+1c7980362eeb"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["C", TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "54ef3de8-4d9b-4f1c-a76f-439cca9902f3"],
+ " the present value of a call with strike K."
+}], "Item",
+ CellChangeTimes->{{3.8344137590174503`*^9, 3.8344137889240437`*^9}, {
+   3.834413823098654*^9, 3.834413886499752*^9}, {3.834413924288219*^9, 
+   3.834413934603155*^9}, 3.8344143052346983`*^9, {3.834414350783115*^9, 
+   3.834414389902377*^9}, {3.834414447076673*^9, 3.834414477868376*^9}, {
+   3.8344146269446917`*^9, 3.834414627802586*^9}, {3.834414725415579*^9, 
+   3.834414738853661*^9}},ExpressionUUID->"cb9b069f-89cf-4b2b-ac69-\
+3f4630f84f4a"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["C", "u"], "=", 
+    RowBox[{"Max", "(", 
+     RowBox[{
+      RowBox[{"uS", "-", "K"}], ",", "0"}], ")"}]}], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "2325e359-4954-4371-b0d9-d0f5dc3ed238"],
+ " the value of the call when the stock rises."
+}], "Item",
+ CellChangeTimes->{{3.8344137590174503`*^9, 3.8344137889240437`*^9}, {
+   3.834413823098654*^9, 3.834413886499752*^9}, {3.834413924288219*^9, 
+   3.834413934603155*^9}, 3.8344143052346983`*^9, {3.834414350783115*^9, 
+   3.834414389902377*^9}, {3.834414447076673*^9, 3.834414469780299*^9}, {
+   3.834414602312359*^9, 3.834414624576837*^9}, {3.834414687105145*^9, 
+   3.834414712494557*^9}},ExpressionUUID->"de7e282a-344c-4220-9f23-\
+328f6a78b9c3"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["C", "d"], "=", 
+    RowBox[{"Max", "(", 
+     RowBox[{
+      RowBox[{"dS", "-", "K"}], ",", "0"}], ")"}]}], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "f96951df-d6ef-41ed-beeb-173f21a21828"],
+ " the value of the call when the stock falls."
+}], "Item",
+ CellChangeTimes->{{3.8344137590174503`*^9, 3.8344137889240437`*^9}, {
+   3.834413823098654*^9, 3.834413886499752*^9}, {3.834413924288219*^9, 
+   3.834413934603155*^9}, 3.8344143052346983`*^9, {3.834414350783115*^9, 
+   3.834414389902377*^9}, {3.834414447076673*^9, 3.834414469780299*^9}, {
+   3.834414602312359*^9, 3.834414622821533*^9}, {3.834414750675969*^9, 
+   3.834414755074593*^9}, {3.834415781447034*^9, 
+   3.834415808255458*^9}},ExpressionUUID->"6205314a-d5e7-4a0e-a74a-\
+f4303220fc29"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TreePlot", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"\"\<S\>\"", "\[Rule]", "\"\<dS (with probability 1-q)\>\""}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"\"\<S\>\"", "\[Rule]", "\"\<uS (with probability q)\>\""}]}], 
+    "\[IndentingNewLine]", "}"}], ",", " ", "\[IndentingNewLine]", "Left", 
+   ",", " ", "\[IndentingNewLine]", 
+   RowBox[{"VertexLabels", "->", "\"\<Name\>\""}], ",", "\[IndentingNewLine]", 
+   RowBox[{"ImageSize", "\[Rule]", "Small"}]}], "\n", "]"}]], "Input",
+ CellChangeTimes->{{3.83441398373604*^9, 3.834414022664236*^9}, {
+  3.834414116688881*^9, 3.834414207138212*^9}, {3.834414843441543*^9, 
+  3.8344148470500813`*^9}},
+ CellLabel->
+  "In[180]:=",ExpressionUUID->"e33250e0-ec55-4392-9661-eaec050d9dd4"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+    LineBox[{{{0., 0.4472135954999586}, {0.8944271909999156, 0.}}, {{0., 
+     0.4472135954999586}, {0.8944271909999163, 0.8944271909999157}}}]}, 
+   {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+    0.7]}], {DiskBox[{0., 0.4472135954999586}, 0.011386058141428934], 
+     InsetBox["\<\"S\"\>", Offset[{0, 2}, {0., 0.45859965364138755}], 
+      ImageScaled[{0.5, 0}],
+      BaseStyle->"Graphics"]}, {
+     DiskBox[{0.8944271909999156, 0.}, 0.011386058141428934], 
+     InsetBox["\<\"dS (with probability 1-q)\"\>", 
+      Offset[{0, -2}, {0.8944271909999156, -0.011386058141428934}], 
+      ImageScaled[{0.5, 1}],
+      BaseStyle->"Graphics"]}, {
+     DiskBox[{0.8944271909999163, 0.8944271909999157}, 0.011386058141428934], 
+     InsetBox["\<\"uS (with probability q)\"\>", 
+      Offset[{0, -2}, {0.8944271909999163, 0.8830411328584868}], ImageScaled[{0.5, 1}],
+      BaseStyle->"Graphics"]}}},
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->Small]], "Output",
+ CellChangeTimes->{
+  3.8344139494285393`*^9, {3.834413993318499*^9, 3.834414023317103*^9}, {
+   3.8344141211741447`*^9, 3.834414207697847*^9}, {3.834414844349038*^9, 
+   3.83441484736901*^9}},
+ CellLabel->
+  "Out[180]=",ExpressionUUID->"e0d27ab5-a74a-49c2-865e-6be4d1b3eeef"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TreePlot", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+     "\"\<C\>\"", "\[Rule]", 
+      "\"\<\!\(TraditionalForm\`\*SubscriptBox[\(C\), \(d\)] = Max(dS - K, 0)\
+\) (with probability 1-q)\>\""}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+     "\"\<C\>\"", "\[Rule]", 
+      "\"\<\!\(TraditionalForm\`\(TraditionalForm\`\*SubscriptBox[\(C\), \
+\(u\)] = Max(uS - K, 0)\)\) (with probability q)\>\""}]}], 
+    "\[IndentingNewLine]", "}"}], ",", " ", "\[IndentingNewLine]", "Left", 
+   ",", " ", "\[IndentingNewLine]", 
+   RowBox[{"VertexLabels", "\[Rule]", "\"\<Name\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"ImageSize", "\[Rule]", "250"}]}], "\n", "]"}]], "Input",
+ CellChangeTimes->{{3.834414643059145*^9, 3.834414676552763*^9}, {
+  3.834414816256781*^9, 3.8344149125319347`*^9}, {3.834415080338501*^9, 
+  3.834415236761714*^9}, {3.8344152779015207`*^9, 3.8344153348342857`*^9}, {
+  3.8344154506913033`*^9, 3.83441548321278*^9}},
+ CellLabel->
+  "In[221]:=",ExpressionUUID->"2b1f2a47-4187-48d9-acdc-6a5d29094814"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+    LineBox[{{{0., 0.4472135954999586}, {0.8944271909999156, 0.}}, {{0., 
+     0.4472135954999586}, {0.8944271909999163, 0.8944271909999157}}}]}, 
+   {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+    0.7]}], {DiskBox[{0., 0.4472135954999586}, 0.011386058141428934], 
+     InsetBox["\<\"C\"\>", Offset[{0, 2}, {0., 0.45859965364138755}], 
+      ImageScaled[{0.5, 0}],
+      BaseStyle->"Graphics"]}, {
+     DiskBox[{0.8944271909999156, 0.}, 0.011386058141428934], 
+     InsetBox["\<\"\\!\\(TraditionalForm\\`\\*SubscriptBox[\\(C\\), \\(d\\)] \
+= Max(dS - K, 0)\\) (with probability 1-q)\"\>", 
+      Offset[{0, -2}, {0.8944271909999156, -0.011386058141428934}], 
+      ImageScaled[{0.5, 1}],
+      BaseStyle->"Graphics"]}, {
+     DiskBox[{0.8944271909999163, 0.8944271909999157}, 0.011386058141428934], 
+     InsetBox["\<\"\\!\\(TraditionalForm\\`\\(TraditionalForm\\`\\*\
+SubscriptBox[\\(C\\), \\(u\\)] = Max(uS - K, 0)\\)\\) (with probability \
+q)\"\>", Offset[{0, -2}, {0.8944271909999163, 0.8830411328584868}], 
+      ImageScaled[{0.5, 1}],
+      BaseStyle->"Graphics"]}}},
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->250]], "Output",
+ CellChangeTimes->{{3.834414669059449*^9, 3.834414676879513*^9}, 
+   3.834414836245268*^9, {3.834414880830222*^9, 3.8344148998278637`*^9}, {
+   3.8344150874709797`*^9, 3.834415106773472*^9}, {3.834415153535741*^9, 
+   3.834415237072545*^9}, {3.834415279557519*^9, 3.834415298527041*^9}, 
+   3.8344153352078667`*^9, {3.834415474300927*^9, 3.8344154835166397`*^9}},
+ CellLabel->
+  "Out[221]=",ExpressionUUID->"2f8c821f-99ce-4729-9b78-8e2212de78fe"]
+}, Open  ]],
+
+Cell["\<\
+Now let\[CloseCurlyQuote]s form the following portfolio:
+
+Buy \[CapitalDelta] shares of stock, meaning we need to pay -\[CapitalDelta]S \
+today.
+Borrow B at the interest free rate. We will need to repay rB in the next \
+period.
+\
+\>", "Text",
+ CellChangeTimes->{{3.834415716366701*^9, 3.834415730986355*^9}, {
+  3.834415816140177*^9, 3.834415859872765*^9}, {3.834415901372993*^9, 
+  3.8344159017981*^9}, {3.8344161256550007`*^9, 3.83441617584474*^9}, {
+  3.834416229543385*^9, 
+  3.83441624088568*^9}},ExpressionUUID->"84a60aae-f8a7-45fc-a8ca-\
+4badfb243f65"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TreePlot", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+     "\"\<-\[CapitalDelta]S + B\>\"", "\[Rule]", 
+      "\"\<\!\(TraditionalForm\`\[CapitalDelta]dS\\\  - \\\ rB\)\>\""}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+     "\"\<-\[CapitalDelta]S + B\>\"", "\[Rule]", 
+      "\"\<\!\(TraditionalForm\`\(TraditionalForm\`\[CapitalDelta]uS\\\  - \\\
+\ rB\)\)\>\""}]}], "\[IndentingNewLine]", "}"}], ",", " ", 
+   "\[IndentingNewLine]", "Left", ",", " ", "\[IndentingNewLine]", 
+   RowBox[{"VertexLabels", "\[Rule]", "\"\<Name\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"ImageSize", "\[Rule]", "Small"}]}], "\n", "]"}]], "Input",
+ CellChangeTimes->{{3.834415931573881*^9, 3.834415966386818*^9}, {
+  3.83441600569394*^9, 3.8344160527000313`*^9}, {3.834416194024291*^9, 
+  3.834416214501086*^9}},
+ CellLabel->
+  "In[224]:=",ExpressionUUID->"0015c168-1619-4cae-981c-b7410fe8ba8a"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Hue[0.6, 0.7, 0.5], Opacity[0.7], 
+    LineBox[{{{0., 0.4472135954999586}, {0.8944271909999156, 0.}}, {{0., 
+     0.4472135954999586}, {0.8944271909999163, 0.8944271909999157}}}]}, 
+   {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[
+    0.7]}], {DiskBox[{0., 0.4472135954999586}, 0.011386058141428934], 
+     InsetBox["\<\"-\[CapitalDelta]S + B\"\>", 
+      Offset[{0, 2}, {0., 0.45859965364138755}], ImageScaled[{0.5, 0}],
+      BaseStyle->"Graphics"]}, {
+     DiskBox[{0.8944271909999156, 0.}, 0.011386058141428934], 
+     InsetBox["\<\"\\!\\(TraditionalForm\\`\[CapitalDelta]dS\\\\  - \\\\ \
+rB\\)\"\>", Offset[{0, -2}, {0.8944271909999156, -0.011386058141428934}], 
+      ImageScaled[{0.5, 1}],
+      BaseStyle->"Graphics"]}, {
+     DiskBox[{0.8944271909999163, 0.8944271909999157}, 0.011386058141428934], 
+     InsetBox["\<\"\\!\\(TraditionalForm\\`\\(TraditionalForm\\`\
+\[CapitalDelta]uS\\\\  - \\\\ rB\\)\\)\"\>", 
+      Offset[{0, -2}, {0.8944271909999163, 0.8830411328584868}], ImageScaled[{0.5, 1}],
+      BaseStyle->"Graphics"]}}},
+  FormatType->TraditionalForm,
+  FrameTicks->None,
+  ImageSize->Small]], "Output",
+ CellChangeTimes->{
+  3.834416053369525*^9, {3.834416203855157*^9, 3.8344162147997417`*^9}},
+ CellLabel->
+  "Out[224]=",ExpressionUUID->"7e0bf3bd-8624-4bc6-949d-4a2031387fe2"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["The \[OpenCurlyDoubleQuote]trick\[CloseCurlyDoubleQuote]", "Subsection",
+ CellChangeTimes->{{3.834416365858778*^9, 
+  3.834416375629662*^9}},ExpressionUUID->"e7cfa53a-3a97-47b4-b22f-\
+3cd008379690"],
+
+Cell[TextData[{
+ "Notice that we are free to pick any combination of \[CapitalDelta] and B, \
+so let\[CloseCurlyQuote]s choose them such that they satisfy the following \
+conditions:\n\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"\[CapitalDelta]uS", "-", "rB"}], " ", "=", " ", 
+    SubscriptBox["C", "u"]}], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "75c0337d-8a55-4599-993f-70096edd6f7c"],
+ " \n\n",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"\[CapitalDelta]dS", "-", "rB"}], " ", "=", " ", 
+    SubscriptBox["C", "d"]}], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "3382e868-590a-4328-b9cf-8c090c88f8ff"],
+ "\n\nThis gives us a system of two linear equations with 2 unknowns (\
+\[CapitalDelta],B) which has the following solutions:\n\n",
+ Cell[BoxData[
+  RowBox[{"\[CapitalDelta]", "=", 
+   FractionBox[
+    RowBox[{
+     SubscriptBox["C", "d"], " ", "-", " ", 
+     SubscriptBox["C", "u"]}], 
+    RowBox[{"S", 
+     RowBox[{"(", 
+      RowBox[{"d", "-", "u"}], ")"}]}]]}]],
+  CellChangeTimes->{3.834416698975751*^9},ExpressionUUID->
+  "643093d0-7633-40b2-b463-45598507a6f9"],
+ "\n\n",
+ Cell[BoxData[
+  RowBox[{"B", "=", 
+   FractionBox[
+    RowBox[{" ", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["C", "d"], " ", "u"}], " ", "-", " ", 
+      RowBox[{
+       SubscriptBox["C", "u"], " ", "d"}]}]}], 
+    RowBox[{"r", " ", 
+     RowBox[{"(", 
+      RowBox[{"d", "-", "u"}], ")"}]}]]}]],
+  CellChangeTimes->{3.834416698975751*^9},ExpressionUUID->
+  "93eede39-370a-49de-916e-b16919f5a786"],
+ "\n"
+}], "Text",
+ CellChangeTimes->{{3.834416377419392*^9, 3.8344165376693573`*^9}, {
+   3.834416606368025*^9, 3.834416634375907*^9}, {3.83441670917947*^9, 
+   3.8344169112302437`*^9}, 
+   3.834416942547656*^9},ExpressionUUID->"2845f9a7-6f4f-4f8b-ae86-\
+4f4df902261c"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1161, 911},
+WindowMargins->{{Automatic, 225}, {Automatic, 34}},
+Magnification:>1.5 Inherited,
+FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (June 19, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"cec91417-1591-466b-b5f3-f6caffdc5e30"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 215, 5, 238, "Title",ExpressionUUID->"f240b266-d2a9-40a7-b749-c5d9cdc8830c"],
+Cell[798, 29, 531, 11, 157, "Text",ExpressionUUID->"da95190f-a29a-402d-9e73-9ae1035b06de"],
+Cell[CellGroupData[{
+Cell[1354, 44, 220, 4, 81, "Subsection",ExpressionUUID->"bf3c08dd-aeef-4f76-b6b1-3572a1c04e4b"],
+Cell[1577, 50, 797, 15, 191, "Text",ExpressionUUID->"5a54dd37-a1bf-480d-8c27-60ff9b5f9caf"],
+Cell[CellGroupData[{
+Cell[2399, 69, 802, 16, 295, "Input",ExpressionUUID->"111b33cb-e88d-465f-8fc0-2a1285a1a68a"],
+Cell[3204, 87, 1221, 26, 306, "Output",ExpressionUUID->"17c92055-a0e5-4a42-a95c-2b9c81e4be4e"]
+}, Open  ]],
+Cell[4440, 116, 647, 11, 157, "Text",ExpressionUUID->"fb01bcc0-03cc-48a0-a442-486b63c0f44e"],
+Cell[CellGroupData[{
+Cell[5112, 131, 782, 16, 295, "Input",ExpressionUUID->"5605f222-d245-49f1-aea8-e2f02966377e"],
+Cell[5897, 149, 1241, 26, 318, "Output",ExpressionUUID->"fa78b202-d69c-4777-8028-de84eaa9f47c"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7187, 181, 204, 3, 81, "Subsection",ExpressionUUID->"c8e66424-7910-4c57-b615-dbb7d84a3e03"],
+Cell[7394, 186, 2170, 32, 1433, "Text",ExpressionUUID->"f810edc6-2fef-4c49-bd84-b2563f114027"],
+Cell[CellGroupData[{
+Cell[9589, 222, 891, 19, 295, "Input",ExpressionUUID->"a3dcc22d-762e-4c92-89dc-0666a6a813ff"],
+Cell[10483, 243, 1313, 27, 191, "Output",ExpressionUUID->"484b5c21-6b9c-48ca-9ac2-5b26856a0268"]
+}, Open  ]],
+Cell[11811, 273, 1409, 30, 571, "Text",ExpressionUUID->"89939bca-7833-4ede-a1ab-f7ad9288bded"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13257, 308, 157, 3, 81, "Subsection",ExpressionUUID->"2d4cca5d-dcf6-41c6-a297-a3d5b0a7339c"],
+Cell[CellGroupData[{
+Cell[13439, 315, 216, 5, 49, "Item",ExpressionUUID->"34e60906-4aae-47f9-88c4-c9314577a1a5"],
+Cell[13658, 322, 272, 6, 49, "Item",ExpressionUUID->"9923b48a-5ef2-47d0-a8a1-f39e408f453b"],
+Cell[13933, 330, 226, 5, 49, "Item",ExpressionUUID->"809dd85a-f385-45ea-b5af-453e8f0d9614"],
+Cell[14162, 337, 352, 7, 49, "Item",ExpressionUUID->"9d40dbaf-7f78-4231-911e-4560f8e0da37"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14563, 350, 231, 4, 81, "Subsection",ExpressionUUID->"b7d247e3-ce0a-4420-b1b1-f819ccbfd135"],
+Cell[14797, 356, 281, 7, 88, "Text",ExpressionUUID->"b4ca1aa7-2d5e-4e87-b30a-5c3d06f1b011"],
+Cell[CellGroupData[{
+Cell[15103, 367, 478, 11, 49, "Item",ExpressionUUID->"71ce4e9f-a529-4693-a4a8-94e8bb1d8311"],
+Cell[15584, 380, 903, 23, 82, "Item",ExpressionUUID->"4651aea0-913d-47c7-9248-02b65b2feef7"],
+Cell[16490, 405, 508, 11, 49, "Item",ExpressionUUID->"2a785865-1a8e-4ab0-9eae-ad7233f57705"],
+Cell[17001, 418, 508, 11, 49, "Item",ExpressionUUID->"2f98d675-0cb9-4812-bcad-9510c9c970ff"],
+Cell[17512, 431, 752, 17, 49, "Item",ExpressionUUID->"2d54558d-6b29-43f6-85c8-1c7980362eeb"],
+Cell[18267, 450, 664, 13, 49, "Item",ExpressionUUID->"cb9b069f-89cf-4b2b-ac69-3f4630f84f4a"],
+Cell[18934, 465, 797, 18, 49, "Item",ExpressionUUID->"de7e282a-344c-4220-9f23-328f6a78b9c3"],
+Cell[19734, 485, 847, 19, 49, "Item",ExpressionUUID->"6205314a-d5e7-4a0e-a74a-f4303220fc29"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20618, 509, 827, 16, 295, "Input",ExpressionUUID->"e33250e0-ec55-4392-9661-eaec050d9dd4"],
+Cell[21448, 527, 1331, 27, 241, "Output",ExpressionUUID->"e0d27ab5-a74a-49c2-865e-6be4d1b3eeef"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22816, 559, 1112, 23, 295, "Input",ExpressionUUID->"2b1f2a47-4187-48d9-acdc-6a5d29094814"],
+Cell[23931, 584, 1679, 31, 290, "Output",ExpressionUUID->"2f8c821f-99ce-4729-9b78-8e2212de78fe"]
+}, Open  ]],
+Cell[25625, 618, 569, 14, 191, "Text",ExpressionUUID->"84a60aae-f8a7-45fc-a8ca-4badfb243f65"],
+Cell[CellGroupData[{
+Cell[26219, 636, 978, 21, 295, "Input",ExpressionUUID->"0015c168-1619-4cae-981c-b7410fe8ba8a"],
+Cell[27200, 659, 1341, 26, 265, "Output",ExpressionUUID->"7e0bf3bd-8624-4bc6-949d-4a2031387fe2"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28590, 691, 204, 3, 81, "Subsection",ExpressionUUID->"e7cfa53a-3a97-47b4-b22f-3cd008379690"],
+Cell[28797, 696, 1839, 53, 472, "Text",ExpressionUUID->"2845f9a7-6f4f-4f8b-ae86-4f4df902261c"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
